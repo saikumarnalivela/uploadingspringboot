@@ -12,8 +12,9 @@ import com.example.demo.models.FileClass;
 public interface FileRepository extends JpaRepository<FileClass, String>{
 	
 	
-	/*
-	 * @Query("select a from File_upload_Table a where a.customer_ID = 1") public
-	 * List<FileClass> findByCustomerId(@Param("customerId") long customerId);
-	 */
+	
+	 @Query("select a from FileClass a where a.CustomerId = :customerId")
+	 public List<FileClass> findAllFileClassByCustomerId(
+			 @Param("customerId") long customerId);
+	 
 }

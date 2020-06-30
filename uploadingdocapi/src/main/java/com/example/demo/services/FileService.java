@@ -38,9 +38,10 @@ public class FileService {
 		return this.filerepo.findById(docId).get();
 	}
 	
-	/*
-	 * public List<FileClass> getStoredFileByCustomerID(long customerId) { return
-	 * this.filerepo.findByCustomerId(customerId); }
-	 */
+	
+	  public List<FileClass> getStoredFileByCustomerID(long customerId) {
+		  return this.filerepo.findAllFileClassByCustomerId(customerId);
+		  }
+
 	
 }

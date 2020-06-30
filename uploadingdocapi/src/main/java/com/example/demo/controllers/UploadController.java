@@ -68,7 +68,7 @@ public class UploadController {
 	
 	@PostMapping("/{customerId}/uploadFile")
 	public String uploadFileByCustomerId(@PathVariable("customerId") Long customerID, @RequestParam("file") MultipartFile file) throws IOException {
-		String customerResourceUrl = "http://localhost:7080/customer";
+		String customerResourceUrl = "http://localhost:7080/customer/";
 		ResponseEntity<String> response = restTemplate.getForEntity(customerResourceUrl + customerID, String.class);
 		System.out.println(response.getBody());
 		if (response.getStatusCode() == HttpStatus.OK) {
@@ -77,5 +77,10 @@ public class UploadController {
 		}else {
 			return "No customer is existed with the customer-ID";
 		}
+	}
+	@GetMapping("/downloadFile/customerId/{customerId}")
+	public List<FileClass> getdownloadFileByCustomerId(@PathVariable("customerId") long customerId){
+		return this.fileservice.getStoredFileByCustomerID(customerId);
+		
 	}
 }
